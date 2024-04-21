@@ -1,0 +1,17 @@
+/* The verilog code to run the bitwise operations like and, or, xor etc. 
+This is a very simple code, which every beginner starts with.
+This is a Data flow type of description.*/
+
+module logic_gates(A, B, And, Or, Not, Nand, Nor, Xor, Xnor);
+input A, B;
+output And, Or, Not, Nand, Nor, Xor, Xnor;
+
+assign And = A & B;
+assign Or = A | B;
+assign Nand = ~(A & B);
+assign Nor = ~(A | B);
+assign Not = ~A;
+assign Xor = A ^ B;
+assign Xnor = A ~^ B;
+
+endmodule
