@@ -3,15 +3,56 @@ This is a very simple code, which every beginner starts with.
 This is a Data flow type of description.*/
 
 module logic_gates(A, B, And, Or, Not, Nand, Nor, Xor, Xnor);
-input A, B;
-output And, Or, Not, Nand, Nor, Xor, Xnor;
+input A, B; //Declaring the inputs
+output And, Or, Not, Nand, Nor, Xor, Xnor; //Declaring the outputs
 
-assign And = A & B;
-assign Or = A | B;
-assign Nand = ~(A & B);
-assign Nor = ~(A | B);
-assign Not = ~A;
-assign Xor = A ^ B;
-assign Xnor = A ~^ B;
+assign And = A & B; // AND operation between A and B
+assign Or = A | B; // OR operation between A and B
+assign Nand = ~(A & B); NAND AND operation between A and B
+assign Nor = ~(A | B); // NOR operation between A and B
+assign Not = ~A; // NOT operation on A
+assign Xor = A ^ B; // XOR operation between A and B
+assign Xnor = A ~^ B; // XNOR operation between A and B
 
+endmodule
+
+/* For the test bench code, it is a follows. */
+
+module logic_gates_tb;
+
+	// Inputs
+	reg A;
+	reg B;
+
+	// Outputs
+	wire And;
+	wire Or;
+	wire Not;
+	wire Nand;
+	wire Nor;
+	wire Xor;
+	wire Xnor;
+
+	// Instantiate the Unit Under Test (UUT)
+	Logic_gates uut (
+		.A(A), 
+		.B(B), 
+		.And(And), 
+		.Or(Or), 
+		.Not(Not), 
+		.Nand(Nand), 
+		.Nor(Nor), 
+		.Xor(Xor), 
+		.Xnor(Xnor)
+	);
+
+	initial begin
+		A = 0; B = 0;
+		#10 A = 0; B = 1;
+		#10 A = 1; B = 0;
+		#10 A = 1; B = 1;
+		#10;
+		$finish();
+	end
+      
 endmodule
