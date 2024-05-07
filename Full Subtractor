@@ -1,0 +1,47 @@
+module full_subtractor(
+    input A, Bin, C,
+    output D, Bout
+    );
+
+	assign D = A ^ Bin ^ C;
+	assign Bout = (~A&Bin) | (C & (~A | Bin));
+
+endmodule
+
+// Test Bench Code:
+
+module full_sub_tb;
+
+	// Inputs
+	reg A;
+	reg Bin;
+	reg C;
+
+	// Outputs
+	wire D;
+	wire Bout;
+
+	// Instantiate the Unit Under Test (UUT)
+	full_subtractor uut (
+		.A(A), 
+		.Bin(Bin), 
+		.C(C), 
+		.D(D), 
+		.Bout(Bout)
+	);
+
+	initial begin
+		A = 0; Bin = 0; C = 0;
+		#10 A = 0; Bin = 0; C = 1;
+		#10 A = 0; Bin = 1; C = 0;
+		#10 A = 0; Bin = 1; C = 1;
+		#10 A = 1; Bin = 0; C = 0;
+		#10 A = 1; Bin = 0; C = 1;
+		#10 A = 1; Bin = 1; C = 0;
+		#10 A = 1; Bin = 1; C = 1;
+		#10;
+		$finish();
+
+	end
+      
+endmodule
